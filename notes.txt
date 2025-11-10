@@ -1,1 +1,94 @@
-testing
+root@cf8884935a40:/home/lab1/task1# gdb ./task1.debug 
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./task1.debug...(no debugging symbols found)...done.
+(gdb) set pagination off
+(gdb) set disassembly-flavour intel
+No symbol table is loaded.  Use the "file" command.
+(gdb) info file
+Symbols from "/home/lab1/task1/task1.debug".
+Local exec file:
+        `/home/lab1/task1/task1.debug', file type elf32-i386.
+        Entry point: 0x550
+        0x00000154 - 0x00000167 is .interp
+        0x00000168 - 0x00000188 is .note.ABI-tag
+        0x00000188 - 0x000001ac is .note.gnu.build-id
+        0x000001ac - 0x000001cc is .gnu.hash
+        0x000001cc - 0x000002cc is .dynsym
+        0x000002cc - 0x000003a0 is .dynstr
+        0x000003a0 - 0x000003c0 is .gnu.version
+        0x000003c0 - 0x000003f0 is .gnu.version_r
+        0x000003f0 - 0x00000440 is .rel.dyn
+        0x00000440 - 0x00000480 is .rel.plt
+        0x00000480 - 0x000004a3 is .init
+        0x000004b0 - 0x00000540 is .plt
+        0x00000540 - 0x00000550 is .plt.got
+        0x00000550 - 0x000007e2 is .text
+        0x000007e4 - 0x000007f8 is .fini
+        0x000007f8 - 0x0000081d is .rodata
+        0x00000820 - 0x0000085c is .eh_frame_hdr
+        0x0000085c - 0x00000970 is .eh_frame
+        0x00001eb8 - 0x00001ebc is .init_array
+        0x00001ebc - 0x00001ec0 is .fini_array
+        0x00001ec0 - 0x00001fb8 is .dynamic
+        0x00001fb8 - 0x00002000 is .got
+        0x00002000 - 0x00002008 is .data
+        0x00002008 - 0x0000200c is .bss
+(gdb) b *0x550   
+Breakpoint 1 at 0x550
+(gdb) run
+Starting program: /home/lab1/task1/task1.debug 
+warning: Error disabling address space randomization: Operation not permitted
+Warning:
+Cannot insert breakpoint 1.
+Cannot access memory at address 0x550
+
+(gdb) info registers
+eax            0x0      0
+ecx            0x0      0
+edx            0x0      0
+ebx            0x0      0
+esp            0xffbcadf0       0xffbcadf0
+ebp            0x0      0x0
+esi            0x0      0
+edi            0x0      0
+eip            0xf7f20c70       0xf7f20c70
+eflags         0x202    [ IF ]
+cs             0x23     35
+ss             0x2b     43
+ds             0x2b     43
+es             0x2b     43
+fs             0x0      0
+gs             0x0      0
+(gdb) set disable-randomization off/on
+"on" or "off" expected.
+(gdb) set disable-randomization off   
+(gdb) info registers
+eax            0x0      0
+ecx            0x0      0
+edx            0x0      0
+ebx            0x0      0
+esp            0xffbcadf0       0xffbcadf0
+ebp            0x0      0x0
+esi            0x0      0
+edi            0x0      0
+eip            0xf7f20c70       0xf7f20c70
+eflags         0x202    [ IF ]
+cs             0x23     35
+ss             0x2b     43
+ds             0x2b     43
+es             0x2b     43
+fs             0x0      0
+gs             0x0      0
