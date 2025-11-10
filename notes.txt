@@ -1,29 +1,21 @@
-Program stopped.
-0xf7f30c70 in ?? () from /lib/ld-linux.so.2
-(gdb) ni
-0xf7f30c72 in ?? () from /lib/ld-linux.so.2                                                                                                                                                                                                                                   
-(gdb) ni                                                                                                                                                                                                                                                                      
-0xf7f30c75 in ?? () from /lib/ld-linux.so.2                                                                                                                                                                                                                                   
-(gdb) ni                                                                                                                                                                                                                                                                      
-0xf7f30c76 in ?? () from /lib/ld-linux.so.2                                                                                                                                                                                                                                   
-(gdb) ni                                                                                                                                                                                                                                                                      
-0xf7f31800 in ?? () from /lib/ld-linux.so.2                                                                                                                                                                                                                                   
-(gdb) ni                                                                                                                                                                                                                                                                      
-0xf7f31801 in ?? () from /lib/ld-linux.so.2                                                                                                                                                                                                                                   
-(gdb) ni                                                                                                                                                                                                                                                                      
-0xf7f31803 in ?? () from /lib/ld-linux.so.2                                                                                                                                                                                                                                   
-(gdb) ni                                                                                                                                                                                                                                                                      
-0xf7f31804 in ?? () from /lib/ld-linux.so.2                                                                                                                                                                                                                                   
-(gdb) ni                                                                                                                                                                                                                                                                      
-0xf7f31805 in ?? () from /lib/ld-linux.so.2                                                                                                                                                                                                                                   
-(gdb) ni                                                                                                                                                                                                                                                                      
-0xf7f31806 in ?? () from /lib/ld-linux.so.2                                                                                                                                                                                                                                   
-(gdb) ni                                                                                                                                                                                                                                                                      
-0xf7f3180b in ?? () from /lib/ld-linux.so.2                                                                                                                                                                                                                                   
-(gdb) si                                                                                                                                                                                                                                                                      
-0xf7f31811 in ?? () from /lib/ld-linux.so.2                                                                                                                                                                                                                                   
-(gdb) ni                                                                                                                                                                                                                                                                      
-0xf7f31814 in ?? () from /lib/ld-linux.so.2                                                                                                                                                                                                                                   
-(gdb) si                                                                                                                                                                                                                                                                      
-0xf7f31816 in ?? () from /lib/ld-linux.so.2                                                                                                                                                                                                                                   
-(gdb)     
+info proc mappings
+process 537
+Mapped address spaces:
+
+        Start Addr   End Addr       Size     Offset objfile
+        0x565b7000 0x565b8000     0x1000        0x0 /home/lab1/task1/task1.debug
+        0x565b8000 0x565b9000     0x1000        0x0 /home/lab1/task1/task1.debug
+        0x565b9000 0x565ba000     0x1000     0x1000 /home/lab1/task1/task1.debug
+        0xf7d26000 0xf7efb000   0x1d5000        0x0 /lib/i386-linux-gnu/libc-2.27.so
+        0xf7efb000 0xf7efc000     0x1000   0x1d5000 /lib/i386-linux-gnu/libc-2.27.so
+        0xf7efc000 0xf7efe000     0x2000   0x1d5000 /lib/i386-linux-gnu/libc-2.27.so
+        0xf7efe000 0xf7eff000     0x1000   0x1d7000 /lib/i386-linux-gnu/libc-2.27.so
+        0xf7eff000 0xf7f02000     0x3000        0x0 
+        0xf7f09000 0xf7f0b000     0x2000        0x0 
+        0xf7f0b000 0xf7f0f000     0x4000        0x0 [vvar]
+        0xf7f0f000 0xf7f11000     0x2000        0x0 [vvar_vclock]
+        0xf7f11000 0xf7f13000     0x2000        0x0 [vdso]
+        0xf7f13000 0xf7f39000    0x26000        0x0 /lib/i386-linux-gnu/ld-2.27.so
+        0xf7f39000 0xf7f3a000     0x1000    0x25000 /lib/i386-linux-gnu/ld-2.27.so
+        0xf7f3a000 0xf7f3b000     0x1000    0x26000 /lib/i386-linux-gnu/ld-2.27.so
+        0xffd0b000 0xffd2c000    0x21000        0x0 [stack]
