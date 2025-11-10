@@ -1,4 +1,6 @@
- Start Addr   End Addr       Size     Offset objfile
+Mapped address spaces:
+
+        Start Addr   End Addr       Size     Offset objfile
         0x56604000 0x56605000     0x1000        0x0 /home/lab1/task1/task1.debug
         0x56605000 0x56606000     0x1000        0x0 /home/lab1/task1/task1.debug
         0x56606000 0x56607000     0x1000     0x1000 /home/lab1/task1/task1.debug
@@ -15,3 +17,26 @@
         0xf7f9c000 0xf7f9d000     0x1000    0x25000 /lib/i386-linux-gnu/ld-2.27.so
         0xf7f9d000 0xf7f9e000     0x1000    0x26000 /lib/i386-linux-gnu/ld-2.27.so
         0xffa75000 0xffa96000    0x21000        0x0 [stack]
+(gdb) x/s 0x56604000
+0x56604000:     "\177ELF\001\001\001"
+(gdb) x/s 0x56605000
+0x56605000:     "\177ELF\001\001\001"
+(gdb) find 0x56604000,0x56605000 "flag
+Unterminated string in expression.                                                                                                                                                                                                          
+(gdb) find 0x56604000,0x56605000 "flag"                                                                                                                                                                                                     
+A syntax error in expression, near `"flag"'.                                                                                                                                                                                                
+(gdb) find 0x56604000,0x56605000, "flag"                                                                                                                                                                                                    
+Pattern not found.                                                                                                                                                                                                                          
+(gdb) find 0x56604000,0x56605000,"flag"                                                                                                                                                                                                    
+Pattern not found.                                                                                                                                                                                                                          
+(gdb) find 0x56606000,0x56607000,"flag"                                                                                                                                                                                                     
+warning: Unable to access 4097 bytes of target memory at 0x56606000, halting search.                                                                                                                                                        
+Pattern not found.                                                                                                                                                                                                                          
+(gdb) find 0x56606000,0x56607000, "flag"                                                                                                                                                                                                    
+warning: Unable to access 4097 bytes of target memory at 0x56606000, halting search.                                                                                                                                                        
+Pattern not found.                                                                                                                                                                                                                          
+(gdb) find 0x56605000,0x56606000, "flag"                                                                                                                                                                                                    
+Pattern not found.                                                                                                                                                                                                                          
+(gdb) find 0x56606000,0x56607000, "flag"                                                                                                                                                                                                    
+warning: Unable to access 4097 bytes of target memory at 0x56606000, halting search.                                                                                                                                                        
+Pattern not found.  
