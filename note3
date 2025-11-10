@@ -1,0 +1,79 @@
+Perfect — now we can calculate the **real addresses at runtime** for your stripped binary using the memory mappings. Let me break it down step by step using your `info proc mappings` output.
+
+---
+
+### **1️⃣ Identify your binary base**
+
+Look at the mappings for `/home/lab1/task1/task1.debug`:
+
+```
+0x565f3000 0x565f4000 0x1000 0x0 /home/lab1/task1/task1.debug
+0x565f4000 0x565f5000 0x1000 0x0 /home/lab1/task1/task1.debug
+0x565f5000 0x565f6000 0x1000 0x1000 /home/lab1/task1/task1.debug
+```
+
+* The **start of your binary in memory** is `0x565f3000`.
+* This is your **binary base address** at runtime.
+
+✅ So any offsets you see in static disassembly must be **added to `0x565f3000`** to get the runtime address.
+
+---
+
+### **2️⃣ Identify libc base**
+
+Look at the mappings for `libc-2.27.so`:
+
+```
+0xf7d29000 0xf7efe000 0x1d5000 0x0 /lib/i386-linux-gnu/libc-2.27.so
+```
+
+* The **start of libc in memory** is `0xf7d29000`.
+* This is your **libc base address** at runtime.
+
+✅ Any offsets from libc functions (`system`, `gets`, etc.) are **added to `0xf7d29000`**.
+
+---
+
+### **3️⃣ How to calculate real addresses**
+
+Suppose in static analysis (objdump / GDB disassembly) you find:
+
+* `main` at offset `0xc050` in your binary
+* `gets` at offset `0x5f140` in libc
+
+Then the **real addresses at runtime** are:
+
+```
+binary_base + main_offset  = 0x565f3000 + 0xc050 = 0x566b9050
+libc_base   + gets_offset  = 0xf7d29000 + 0x5f140 = 0xf7d88840
+```
+
+---
+
+### **4️⃣ Putting it together for breakpoints**
+
+* Binary breakpoint:
+
+```gdb
+b *0x566b9050  # main or vulnerable function
+```
+
+* Libc breakpoint:
+
+```gdb
+b *0xf7d88840  # gets / scanf
+```
+
+---
+
+So the **general rule** is:
+
+```
+runtime_address = base_address_from_mappings + offset_in_binary_or_libc
+```
+
+---
+
+If you want, I can **calculate the exact address for your `task1.debug` entry point** using the mappings you just gave. That way you can set the breakpoint without errors.
+
+Do you want me to do that?
