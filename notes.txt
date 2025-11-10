@@ -23,3 +23,18 @@ Mapped address spaces:
 
 0x565b7000 0x565b8000     0x1000        0x0 /home/lab1/task1/task1.debug
 
+real_address = 0x565b7000 + 0x550
+
+
+Step by step addition:
+
+0x565b7000 + 0x500 = 0x565bc000
+
+0x565bc000 + 0x50 = 0x565bc050
+
+✅ So the real memory address is:
+
+0x565bc050
+
+
+
