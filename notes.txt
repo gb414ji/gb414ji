@@ -19,3 +19,7 @@ Mapped address spaces:
         0xf7f39000 0xf7f3a000     0x1000    0x25000 /lib/i386-linux-gnu/ld-2.27.so
         0xf7f3a000 0xf7f3b000     0x1000    0x26000 /lib/i386-linux-gnu/ld-2.27.so
         0xffd0b000 0xffd2c000    0x21000        0x0 [stack]
+
+
+0x565b7000 0x565b8000     0x1000        0x0 /home/lab1/task1/task1.debug
+
