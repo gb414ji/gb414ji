@@ -1,0 +1,3 @@
+ grep -n "strcpy\|gets\|scanf\|sprintf\|memcpy" -n task1.disam || true
+33:000004d0 <gets@plt>:
+219: 6b8:       e8 13 fe ff ff          call   4d0 <gets@plt>
