@@ -116,3 +116,14 @@ Type "apropos word" to search for commands related to "word"...
 Reading symbols from ./task1.debug...(no debugging symbols found)...done.
 (gdb) set disassembly-flavour intel
 No symbol table is loaded.  Use the "file" command.
+
+
+(gdb) b *0x550
+Breakpoint 1 at 0x550
+(gdb) run
+Starting program: /home/lab1/task1/task1.debug 
+warning: Error disabling address space randomization: Operation not permitted
+Warning:
+Cannot insert breakpoint 1.
+Cannot access memory at address 0x550
+
