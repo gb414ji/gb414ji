@@ -1,0 +1,9 @@
+(gdb) b *0x565bc050
+Breakpoint 1 at 0x565bc050
+(gdb) continue
+Continuing.
+Warning:
+Cannot insert breakpoint 1.
+Cannot access memory at address 0x565bc050
+
+Command aborted.
