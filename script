@@ -1,0 +1,120 @@
+(gdb) x/128bx 0xffd66b90
+0xffd66b90:     0x41    0x41    0x41    0x41    0x41    0x41    0x41    0x41
+0xffd66b98:     0x41    0x41    0x41    0x41    0x41    0x41    0x41    0x41
+0xffd66ba0:     0x00    0x00    0x00    0x00    0x64    0x6c    0xd6    0xff
+0xffd66ba8:     0x6c    0x6c    0xd6    0xff    0xd0    0x6b    0xd6    0xff
+0xffd66bb0:     0x00    0x00    0x00    0x00    0x00    0xe0    0xf3    0xf7
+0xffd66bb8:     0x00    0x00    0x00    0x00    0xa1    0xef    0xd7    0xf7
+0xffd66bc0:     0x00    0xe0    0xf3    0xf7    0x00    0xe0    0xf3    0xf7
+0xffd66bc8:     0x00    0x00    0x00    0x00    0xa1    0xef    0xd7    0xf7
+0xffd66bd0:     0x01    0x00    0x00    0x00    0x64    0x6c    0xd6    0xff
+0xffd66bd8:     0x6c    0x6c    0xd6    0xff    0xf4    0x6b    0xd6    0xff
+0xffd66be0:     0x01    0x00    0x00    0x00    0x64    0x6c    0xd6    0xff
+0xffd66be8:     0x00    0xe0    0xf3    0xf7    0x1a    0x37    0xf6    0xf7
+0xffd66bf0:     0x60    0x6c    0xd6    0xff    0x00    0x00    0x00    0x00
+0xffd66bf8:     0x00    0xe0    0xf3    0xf7    0x00    0x00    0x00    0x00
+0xffd66c00:     0x00    0x00    0x00    0x00    0x98    0x8d    0xee    0xdf
+0xffd66c08:     0x88    0xeb    0xe7    0xdc    0x00    0x00    0x00    0x00
+(gdb) x/128bx $esp-0x100
+0xffd66a90:     0x80    0xed    0xf3    0xf7    0xd4    0x07    0x00    0x00
+0xffd66a98:     0x01    0x00    0x00    0x00    0x51    0x6b    0xd6    0xff
+0xffd66aa0:     0x00    0x00    0x00    0x00    0xd4    0x07    0x00    0x00
+0xffd66aa8:     0x9d    0x70    0xdd    0xf7    0x01    0x00    0x00    0x00
+0xffd66ab0:     0x0a    0x00    0x00    0x00    0x00    0xe0    0xf3    0xf7
+0xffd66ab8:     0x38    0x6b    0xd6    0xff    0x9d    0x92    0xdd    0xf7
+0xffd66ac0:     0x80    0xed    0xf3    0xf7    0x05    0x00    0x00    0x00
+0xffd66ac8:     0x80    0xed    0xf3    0xf7    0x6b    0x96    0xdd    0xf7
+0xffd66ad0:     0x80    0xed    0xf3    0xf7    0xc7    0xed    0xf3    0xf7
+0xffd66ad8:     0x01    0x00    0x00    0x00    0x1b    0xa5    0xdd    0xf7
+0xffd66ae0:     0xc0    0xe5    0xf3    0xf7    0x00    0xb0    0xf7    0xf7
+0xffd66ae8:     0x69    0x95    0xdd    0xf7    0x80    0xc8    0xf3    0xf7
+0xffd66af0:     0x05    0x00    0x00    0x00    0x00    0xe0    0xf3    0xf7
+0xffd66af8:     0x38    0x6b    0xd6    0xff    0x1b    0xdf    0xdc    0xf7
+0xffd66b00:     0x80    0xed    0xf3    0xf7    0x0a    0x00    0x00    0x00
+0xffd66b08:     0x05    0x00    0x00    0x00    0xb8    0x0f    0x5b    0x56
+(gdb) x/s 0xffd66a90 
+0xffd66a90:     "\200\355\363\367\324\a"
+(gdb) x/s 0xffd66aa0
+0xffd66aa0:     ""
+(gdb) x/s 0xffd66ab0 
+0xffd66ab0:     "\n"
+(gdb) x/s 0xffd66ac0 
+0xffd66ac0:     "\200\355\363\367\005"
+(gdb) find 0xffd66a90,0xffd96000, "f"
+warning: Unable to access 16001 bytes of target memory at 0xffd66a90, halting search.
+Pattern not found.
+(gdb) set $start = $esp - 0x200
+(gdb) set $end = $esp + 0x200                                                                                      
+(gdb) set $chunk = 0x20                                                                                            
+(gdb) while $start < $end                                                                                          
+ >printf "Scanning: 0x%x - 0x%x\n", $start, $start+$chunk                                                          
+ >x/s $start                                                                                                       
+ >set $start = $start + $chunk                                                                                     
+ >                                                                                                                 
+ >end                                                                                                              
+Scanning: 0xffd66990 - 0xffd669b0                                                                                  
+0xffd66990:     "H\025"                                                                                            
+Scanning: 0xffd669b0 - 0xffd669d0                                                                                  
+0xffd669b0:     ""                                                                                                 
+Scanning: 0xffd669d0 - 0xffd669f0                                                                                  
+0xffd669d0:     "\001"                                                                                             
+Scanning: 0xffd669f0 - 0xffd66a10                                                                                  
+0xffd669f0:     "Xj\326\377\001"                                                                                   
+Scanning: 0xffd66a10 - 0xffd66a30                                                                                  
+0xffd66a10:     "\a\237\335\367\200\310\363\367\300\345\363\367\370\223\335\367\200\355\363\367\001"               
+Scanning: 0xffd66a30 - 0xffd66a50                                                                                  
+0xffd66a30:     "\200\355\363\367\005"                                                                             
+Scanning: 0xffd66a50 - 0xffd66a70                                                                                  
+0xffd66a50:     "\001"                                                                                             
+Scanning: 0xffd66a70 - 0xffd66a90                                                                                  
+0xffd66a70:     " \302\363\367\307\355\363\367\307\355\363\367\367p\335\367\200\355\363\367\307\355\363\367\001"   
+Scanning: 0xffd66a90 - 0xffd66ab0                                                                                  
+0xffd66a90:     "\200\355\363\367\324\a"                                                                           
+Scanning: 0xffd66ab0 - 0xffd66ad0                                                                                  
+0xffd66ab0:     "\n"                                                                                               
+Scanning: 0xffd66ad0 - 0xffd66af0                                                                                  
+0xffd66ad0:     "\200\355\363\367\307\355\363\367\001"                                                             
+Scanning: 0xffd66af0 - 0xffd66b10                                                                                  
+0xffd66af0:     "\005"                                                                                             
+Scanning: 0xffd66b10 - 0xffd66b30                                                                                  
+0xffd66b10:     ""                                                                                                 
+Scanning: 0xffd66b30 - 0xffd66b50
+0xffd66b30:     ""
+Scanning: 0xffd66b50 - 0xffd66b70
+0xffd66b50:     'A' <repeats 80 times>
+Scanning: 0xffd66b70 - 0xffd66b90
+0xffd66b70:     'A' <repeats 48 times>
+Scanning: 0xffd66b90 - 0xffd66bb0
+0xffd66b90:     'A' <repeats 16 times>
+Scanning: 0xffd66bb0 - 0xffd66bd0
+0xffd66bb0:     ""
+Scanning: 0xffd66bd0 - 0xffd66bf0
+0xffd66bd0:     "\001"
+Scanning: 0xffd66bf0 - 0xffd66c10
+0xffd66bf0:     "`l\326\377"
+Scanning: 0xffd66c10 - 0xffd66c30
+0xffd66c10:     ""
+Scanning: 0xffd66c30 - 0xffd66c50
+0xffd66c30:     "\001"
+Scanning: 0xffd66c50 - 0xffd66c70
+0xffd66c50:     "\340\367ZVp9\366\367\\l\326\377@\271\367\367\001"
+Scanning: 0xffd66c70 - 0xffd66c90
+0xffd66c70:     "\fy\326\377\"y\326\377*y\326\377\065y\326\377Gy\326\377Vy\326\377ay\326\377my\326\377\257y\326\377\233\177\326\377\275\177\326\377\322\177\326\377"
+Scanning: 0xffd66c90 - 0xffd66cb0
+0xffd66c90:     "\257y\326\377\233\177\326\377\275\177\326\377\322\177\326\377"
+Scanning: 0xffd66cb0 - 0xffd66cd0
+0xffd66cb0:     ""
+Scanning: 0xffd66cd0 - 0xffd66cf0
+---Type <return> to continue, or q <return> to quit---
+0xffd66cd0:     "d"
+Scanning: 0xffd66cf0 - 0xffd66d10
+0xffd66cf0:     ""
+Scanning: 0xffd66d10 - 0xffd66d30
+0xffd66d10:     ""
+Scanning: 0xffd66d30 - 0xffd66d50
+0xffd66d30:     "km\326\377\032"
+Scanning: 0xffd66d50 - 0xffd66d70
+0xffd66d50:     "\034"
+Scanning: 0xffd66d70 - 0xffd66d90
+0xffd66d70:     "\234\271\063\273\263\226L\r/ \241i686"
+(gdb) 
