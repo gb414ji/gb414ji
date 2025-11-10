@@ -1,40 +1,49 @@
-info proc mappings
-process 537
+(gdb) info proc mappings
+process 1298
 Mapped address spaces:
 
         Start Addr   End Addr       Size     Offset objfile
-        0x565b7000 0x565b8000     0x1000        0x0 /home/lab1/task1/task1.debug
-        0x565b8000 0x565b9000     0x1000        0x0 /home/lab1/task1/task1.debug
-        0x565b9000 0x565ba000     0x1000     0x1000 /home/lab1/task1/task1.debug
-        0xf7d26000 0xf7efb000   0x1d5000        0x0 /lib/i386-linux-gnu/libc-2.27.so
-        0xf7efb000 0xf7efc000     0x1000   0x1d5000 /lib/i386-linux-gnu/libc-2.27.so
-        0xf7efc000 0xf7efe000     0x2000   0x1d5000 /lib/i386-linux-gnu/libc-2.27.so
-        0xf7efe000 0xf7eff000     0x1000   0x1d7000 /lib/i386-linux-gnu/libc-2.27.so
-        0xf7eff000 0xf7f02000     0x3000        0x0 
-        0xf7f09000 0xf7f0b000     0x2000        0x0 
-        0xf7f0b000 0xf7f0f000     0x4000        0x0 [vvar]
-        0xf7f0f000 0xf7f11000     0x2000        0x0 [vvar_vclock]
-        0xf7f11000 0xf7f13000     0x2000        0x0 [vdso]
-        0xf7f13000 0xf7f39000    0x26000        0x0 /lib/i386-linux-gnu/ld-2.27.so
-        0xf7f39000 0xf7f3a000     0x1000    0x25000 /lib/i386-linux-gnu/ld-2.27.so
-        0xf7f3a000 0xf7f3b000     0x1000    0x26000 /lib/i386-linux-gnu/ld-2.27.so
-        0xffd0b000 0xffd2c000    0x21000        0x0 [stack]
+        0x565f3000 0x565f4000     0x1000        0x0 /home/lab1/task1/task1.debug
+        0x565f4000 0x565f5000     0x1000        0x0 /home/lab1/task1/task1.debug
+        0x565f5000 0x565f6000     0x1000     0x1000 /home/lab1/task1/task1.debug
+        0xf7d29000 0xf7efe000   0x1d5000        0x0 /lib/i386-linux-gnu/libc-2.27.so
+        0xf7efe000 0xf7eff000     0x1000   0x1d5000 /lib/i386-linux-gnu/libc-2.27.so
+        0xf7eff000 0xf7f01000     0x2000   0x1d5000 /lib/i386-linux-gnu/libc-2.27.so
+        0xf7f01000 0xf7f02000     0x1000   0x1d7000 /lib/i386-linux-gnu/libc-2.27.so
+        0xf7f02000 0xf7f05000     0x3000        0x0 
+        0xf7f0d000 0xf7f0f000     0x2000        0x0 
+        0xf7f0f000 0xf7f13000     0x4000        0x0 [vvar]
+        0xf7f13000 0xf7f15000     0x2000        0x0 [vvar_vclock]
+        0xf7f15000 0xf7f17000     0x2000        0x0 [vdso]
+        0xf7f17000 0xf7f3d000    0x26000        0x0 /lib/i386-linux-gnu/ld-2.27.so
+        0xf7f3d000 0xf7f3e000     0x1000    0x25000 /lib/i386-linux-gnu/ld-2.27.so
+        0xf7f3e000 0xf7f3f000     0x1000    0x26000 /lib/i386-linux-gnu/ld-2.27.so
+        0xffec7000 0xffee8000    0x21000        0x0 [stack]
+(gdb) b *0x566b9050
+Breakpoint 1 at 0x566b9050
+(gdb) b *0xf7d88840
+Breakpoint 2 at 0xf7d88840
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/lab1/task1/task1.debug 
+warning: Error disabling address space randomization: Operation not permitted
+Warning:
+Cannot insert breakpoint 1.
+Cannot access memory at address 0x566b9050
+Cannot insert breakpoint 2.
+Cannot access memory at address 0xf7d88840
 
+(gdb) info proc mappings
+process 1302
+Mapped address spaces:
 
-0x565b7000 0x565b8000     0x1000        0x0 /home/lab1/task1/task1.debug
-
-real_address = 0x565b7000 + 0x550
-
-
-Step by step addition:
-
-0x565b7000 + 0x500 = 0x565bc000
-
-0x565bc000 + 0x50 = 0x565bc050
-
-✅ So the real memory address is:
-
-0x565bc050
-
-
-
+        Start Addr   End Addr       Size     Offset objfile
+        0x56617000 0x56618000     0x1000        0x0 /home/lab1/task1/task1.debug
+        0x56618000 0x5661a000     0x2000        0x0 /home/lab1/task1/task1.debug
+        0xf7f43000 0xf7f47000     0x4000        0x0 [vvar]
+        0xf7f47000 0xf7f49000     0x2000        0x0 [vvar_vclock]
+        0xf7f49000 0xf7f4b000     0x2000        0x0 [vdso]
+        0xf7f4b000 0xf7f71000    0x26000        0x0 /lib/i386-linux-gnu/ld-2.27.so
+        0xf7f71000 0xf7f73000     0x2000    0x25000 /lib/i386-linux-gnu/ld-2.27.so
+        0xffba1000 0xffbc2000    0x21000        0x0 [stack]
