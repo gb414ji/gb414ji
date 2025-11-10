@@ -16,3 +16,42 @@ root@cf8884935a40:/home/lab1/task1# ./task1
 overflow me : AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 Nah..
 Segmentation fault (core dumped)
+
+
+(gdb) x/32x $esp
+No registers.
+(gdb) run
+Starting program: /home/lab1/task1/task1.debug 
+warning: Error disabling address space randomization: Operation not permitted
+overflow me : AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+Nah..
+
+Program received signal SIGSEGV, Segmentation fault.
+0x41414141 in ?? ()
+(gdb) x/32x $esp
+0xffdcacd0:     0x41414141      0x41414141      0x41414141      0x41414141
+0xffdcace0:     0x00000000      0xffdcada4      0xffdcadac      0xffdcad10
+0xffdcacf0:     0x00000000      0xf7f09000      0x00000000      0xf7d49fa1
+0xffdcad00:     0xf7f09000      0xf7f09000      0x00000000      0xf7d49fa1
+0xffdcad10:     0x00000001      0xffdcada4      0xffdcadac      0xffdcad34
+0xffdcad20:     0x00000001      0xffdcada4      0xf7f09000      0xf7f2e71a
+0xffdcad30:     0xffdcada0      0x00000000      0xf7f09000      0x00000000
+0xffdcad40:     0x00000000      0x7a484538      0x6a2ca328      0x00000000
+(gdb) info registers
+eax            0x6      6
+ecx            0xf7f09dc7       -135225913
+edx            0xf7f0a890       -135223152
+ebx            0x41414141       1094795585
+esp            0xffdcacd0       0xffdcacd0
+ebp            0x41414141       0x41414141
+esi            0x0      0
+edi            0x0      0
+eip            0x41414141       0x41414141
+eflags         0x10286  [ PF SF IF RF ]
+cs             0x23     35
+ss             0x2b     43
+ds             0x2b     43
+es             0x2b     43
+fs             0x0      0
+gs             0x63     99
+
