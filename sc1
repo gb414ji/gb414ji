@@ -1,0 +1,12 @@
+set $start = $esp - 0x200
+set $end   = $esp + 0x500
+while $start < $end
+    set $b = *(unsigned char*)$start
+    if ($b >= 0x20 && $b <= 0x7e)
+        printf "%c", $b
+    else
+        printf " "
+    end
+    set $start = $start + 1
+end
+printf "\n"
